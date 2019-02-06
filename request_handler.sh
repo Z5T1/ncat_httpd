@@ -7,9 +7,13 @@ HTTP/1.1 $@
 EOF
 }
 
-html_dir=$(realpath "$(dirname "$0")/html")
-error_dir=$(realpath "$(dirname "$0")/error")
-index_file="index.html"
+config_file=${CONFIG_FILE:-ncat_httpd.conf}
+cd "$(dirname $0)"
+pwd >&2
+
+source "$config_file"
+html_dir=$(realpath "$html_dir")
+error_dir=$(realpath "$error_dir")
 
 read line
 echo $line >&2
