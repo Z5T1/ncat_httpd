@@ -1,0 +1,8 @@
+#!/bin/bash
+
+handler=$(realpath $(dirname $0)/request_handler.sh)
+echo $handler
+
+while [ true ]; do
+	ncat -C -l -p 8080 -c "\"$handler\""
+done
