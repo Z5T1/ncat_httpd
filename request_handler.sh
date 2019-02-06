@@ -7,16 +7,15 @@ HTTP/1.1 $@
 EOF
 }
 
-config_file=${CONFIG_FILE:-ncat_httpd.conf}
-cd "$(dirname $0)"
-pwd >&2
+config_file=${config_file:-ncat_httpd.conf}
+cd "$(dirname "$0")"
 
 source "$config_file"
 html_dir=$(realpath "$html_dir")
 error_dir=$(realpath "$error_dir")
 
 read line
-echo $line >&2
+echo -e "$(date)\t$line" >&2
 
 cmd=$(echo $line | cut -d ' ' -f 1)
 

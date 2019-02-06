@@ -1,8 +1,13 @@
 #!/bin/bash
 
-handler=$(realpath $(dirname $0)/request_handler.sh)
-echo $handler
+handler=$(realpath "$(dirname $0)/request_handler.sh")
+config_file=${CONFIG_FILE:-ncat_httpd.conf}
+
+cd "$(dirname $0)"
+
+source "$config_file"
 
 while [ true ]; do
-	ncat -C -l -p 8080 -c "\"$handler\""
+	ncat -C -l -p "$port" -c "\"$handler\""
 done
+
