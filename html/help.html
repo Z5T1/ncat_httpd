@@ -1,6 +1,44 @@
 <title>ncat_httpd - Help</title>
 <h1>ncat_httpd - Help</h1>
 
+<h2>Contents:</h2>
+<ul>
+<li><a href=#starting>Starting ncat_httpd</a></li>
+<li><a href=#configuring>Configuring ncat_httpd</a></li>
+	<ul>
+	<li><a href=#port>Listening Port</a></li>
+	<li><a href=#public_html>Public HTML Directory</a></li>
+	<li><a href=#error_directory>Error Document Directory</a></li>
+	<li><a href=#index_file>Index File</a></li>
+	</ul>
+</ul>
+
+<a href=/>Back</a>
+
+<a id=starting><h2>Starting ncat_httpd</h2></a>
+<p>To start ncat_httpd, run the ncat_httpd script located at the root of the ncat_httpd directory structure:</p>
+<pre>user@localhost:ncat_httpd$ ./ncat_httpd</pre>
+<p>If you are running ncat_httpd on a port below 1024, it will be necessary to run ncat_httpd as root. Note that this is very dangerous. If you do this, it will allow remote code execution as root.</p>
+<p>To stop ncat_httpd, kill the ncat_httpd script. This is considered the correct way to stop it.</p>
+
+<a id=configuring><h2>Configuring ncat_httpd</h2></a>
+<p>The majority of the configuration for ncat_httpd is done in the ncat_httpd.conf file. By default, this file is located at the root of the ncat_httpd directory structure.</p>
+
+<a id=port><h3>Listening Port</h3></a>
+<p>By default, ncat_httpd listens on port 8080. You can change the port that ncat_httpd listens on by changing the 'port=' line in ncat_httpd.conf. ncat_httpd is not capable of listening on more than one port.</p>
+
+<a id=public_html><h3>Public HTML Directory</h3></a>
+<p>By default, ncat_httpd uses the html subdirectory (located in the same directory as the ncat_httpd script) as the public HTML document root directory. This can be overridden by changing the 'html_dir=' line on ncat_httpd.conf. If a relative path is used, the path will be taken relative to the directory that the ncat_httpd script is located in. To change the content that is served by ncat_httpd, replace the file in the html directory.</p>
+
+<a id=error_directory><h3>Error Document Directory</h3></a>
+<p>By default, ncat_httpd uses the html documents in the error subdirectory (located in the same directory as the ncat_httpd script) as the error pages. These documents are named xxx.html, where xxx is the error number. For example, the page that is served when a 404 error is encountered is error/404.html.</p>
+<p>The directory for the error documents can be changed by changing the 'error_dir=' line in ncat_httpd.conf. If a relative path is used, the path will be taken relative to the directory that the ncat_httpd script is located in.</p>
+
+<a id=index_file><h3>Index File</h3></a>
+<p>If a client sends a GET request to get a directory, it is customary to return an index page from that directory (if one exists) instead of an error. By default, this file is index.html. It is possible to configure ncat_httpd to use a different file as the index file by changing the 'index_file=' line in ncat_httpd.conf.</p>
+
+<a href=/>Back</a>
+
 <hr>
 <p>ncat_httpd 1.0.0 | Copyright © 2019 Scott Court</p>
 
