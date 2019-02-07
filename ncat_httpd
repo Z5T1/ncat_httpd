@@ -11,6 +11,6 @@ source "$config_file"
 echo "Listening on port $port"
 
 while [ true ]; do
-	ncat -C -l -p "$port" -c "\"$handler\""
+	ncat -l -p "$port" -c "\"$handler\""
 done
 
