@@ -34,6 +34,9 @@ fi
 if [ ! -f "$html_dir/$page" ]; then
 	print_http_header 404 Not Found
 	cat "$error_dir/404.html"
+elif [ ! -r "$html_dir/$page" ]; then
+	print_http_header 403 Forbidden
+	cat "$error_dir/403.html"
 else
 	print_http_header 200 Ok
 	cat "$html_dir/$page"
