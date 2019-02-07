@@ -1,11 +1,14 @@
 #!/bin/bash
 
+echo "Starting ncat_httpd"
+
 handler=$(realpath "$(dirname $0)/request_handler.sh")
 config_file=${CONFIG_FILE:-ncat_httpd.conf}
 
 cd "$(dirname $0)"
 
 source "$config_file"
+echo "Listening on port $port"
 
 while [ true ]; do
 	ncat -C -l -p "$port" -c "\"$handler\""
