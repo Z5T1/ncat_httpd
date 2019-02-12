@@ -17,7 +17,7 @@ error_dir=$(realpath "$error_dir")
 read line
 echo -e "$(date)\t$line" >&2
 
-cmd=$(echo $line | cut -d ' ' -f 1)
+cmd=$(eval echo $line | cut -d ' ' -f 1)
 
 if [ "$cmd" != "GET" ]; then
 	print_http_header 400 Bad Request
@@ -25,7 +25,7 @@ if [ "$cmd" != "GET" ]; then
 	exit
 fi
 
-page=$(echo $line | cut -d ' ' -f 2)
+page=$(eval echo $line | cut -d ' ' -f 2)
 
 if [[ "$page" == */ ]]; then
 	page+=$index_file
